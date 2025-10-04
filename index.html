@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>iReader - 电子书阅读器</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="app">
+        <!-- 顶部工具栏 -->
+        <header class="toolbar">
+            <button id="menuToggle" class="toolbar-btn">☰</button>
+            <h1 class="title">iReader</h1>
+            <div class="toolbar-controls">
+                <button id="themeToggle" class="toolbar-btn">🌙</button>
+                <button id="fontDecrease" class="toolbar-btn">A-</button>
+                <button id="fontIncrease" class="toolbar-btn">A+</button>
+            </div>
+        </header>
+
+        <!-- 主内容区 -->
+        <div class="main-container">
+            <!-- 侧边栏 -->
+            <aside id="sidebar" class="sidebar">
+                <div class="sidebar-header">
+                    <h3>我的书库</h3>
+                    <button id="closeSidebar" class="close-btn">×</button>
+                </div>
+                <div class="book-list">
+                    <div class="book-item" data-book="demo1">示例书籍1</div>
+                    <div class="book-item" data-book="demo2">示例书籍2</div>
+                </div>
+                <div class="upload-section">
+                    <input type="file" id="fileUpload" accept=".txt" class="file-input">
+                    <label for="fileUpload" class="upload-btn">上传TXT书籍</label>
+                </div>
+            </aside>
+
+            <!-- 阅读器区域 -->
+            <main class="reader-area">
+                <div id="bookContent" class="book-content">
+                    <div class="welcome-message">
+                        <h2>欢迎使用 iReader</h2>
+                        <p>请从侧边栏选择书籍或上传TXT文件开始阅读</p>
+                    </div>
+                </div>
+                
+                <!-- 阅读控制 -->
+                <div class="reading-controls">
+                    <button id="prevPage" class="control-btn">上一页</button>
+                    <div class="progress-info">
+                        <span id="pageInfo">第 0 页 / 共 0 页</span>
+                        <progress id="readingProgress" value="0" max="100"></progress>
+                    </div>
+                    <button id="nextPage" class="control-btn">下一页</button>
+                </div>
+            </main>
+        </div>
+
+        <!-- 浮动工具栏（选中文本时显示） -->
+        <div id="floatingToolbar" class="floating-toolbar">
+            <button id="highlightBtn" class="floating-btn">高亮</button>
+            <button id="bookmarkBtn" class="floating-btn">添加书签</button>
+        </div>
+    </div>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
