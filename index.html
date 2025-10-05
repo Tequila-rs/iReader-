@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>iReader - 电子书阅读器</title>
+    <title>iReader - 专业电子书阅读器</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -13,9 +13,7 @@
             <button id="menuToggle" class="toolbar-btn">☰</button>
             <h1 class="title">iReader</h1>
             <div class="toolbar-controls">
-                <button id="themeToggle" class="toolbar-btn">🌙</button>
-                <button id="fontDecrease" class="toolbar-btn">A-</button>
-                <button id="fontIncrease" class="toolbar-btn">A+</button>
+                <button id="settingsBtn" class="toolbar-btn">设置</button>
             </div>
         </header>
 
@@ -24,13 +22,24 @@
             <!-- 侧边栏 -->
             <aside id="sidebar" class="sidebar">
                 <div class="sidebar-header">
-                    <h3>我的书库</h3>
+                    <h3>书籍信息</h3>
                     <button id="closeSidebar" class="close-btn">×</button>
                 </div>
-                <div class="book-list">
-                    <div class="book-item" data-book="demo1">示例书籍1</div>
-                    <div class="book-item" data-book="demo2">示例书籍2</div>
+                
+                <!-- 书籍信息 -->
+                <div class="book-info">
+                    <h2 id="bookTitle">凡人修仙传</h2>
+                    <p id="bookAuthor">作者：忘语</p>
                 </div>
+                
+                <!-- 章节列表 -->
+                <div class="chapter-section">
+                    <h4>章节列表</h4>
+                    <div id="chapterList" class="chapter-list">
+                        <!-- 章节列表将通过JavaScript动态生成 -->
+                    </div>
+                </div>
+                
                 <div class="upload-section">
                     <input type="file" id="fileUpload" accept=".txt" class="file-input">
                     <label for="fileUpload" class="upload-btn">上传TXT书籍</label>
@@ -42,27 +51,72 @@
                 <div id="bookContent" class="book-content">
                     <div class="welcome-message">
                         <h2>欢迎使用 iReader</h2>
-                        <p>请从侧边栏选择书籍或上传TXT文件开始阅读</p>
+                        <p>请从侧边栏选择章节开始阅读</p>
                     </div>
                 </div>
                 
-                <!-- 阅读控制 -->
-                <div class="reading-controls">
-                    <button id="prevPage" class="control-btn">上一页</button>
-                    <div class="progress-info">
-                        <span id="pageInfo">第 0 页 / 共 0 页</span>
-                        <progress id="readingProgress" value="0" max="100"></progress>
+                <!-- 章节导航 -->
+                <div class="chapter-navigation">
+                    <button id="prevChapter" class="chapter-btn" disabled>上一章</button>
+                    <div class="chapter-info">
+                        <span id="currentChapter">未选择章节</span>
                     </div>
-                    <button id="nextPage" class="control-btn">下一页</button>
+                    <button id="nextChapter" class="chapter-btn" disabled>下一章</button>
                 </div>
             </main>
         </div>
 
-        <!-- 浮动工具栏（选中文本时显示） -->
-        <div id="floatingToolbar" class="floating-toolbar">
-            <button id="highlightBtn" class="floating-btn">高亮</button>
-            <button id="bookmarkBtn" class="floating-btn">添加书签</button>
+        <!-- 阅读设置面板 -->
+        <div id="settingsPanel" class="settings-panel">
+            <div class="settings-header">
+                <h3>阅读设置</h3>
+                <button id="closeSettings" class="close-btn">×</button>
+            </div>
+            
+            <div class="settings-content">
+                <!-- 字体大小 -->
+                <div class="setting-group">
+                    <label>字体大小</label>
+                    <div class="font-size-controls">
+                        <button id="fontSmall" class="font-btn">小</button>
+                        <button id="fontMedium" class="font-btn active">中</button>
+                        <button id="fontLarge" class="font-btn">大</button>
+                    </div>
+                </div>
+                
+                <!-- 主题选择 -->
+                <div class="setting-group">
+                    <label>阅读主题</label>
+                    <div class="theme-controls">
+                        <button data-theme="light" class="theme-btn active">
+                            <div class="theme-preview light-theme"></div>
+                            <span>日间</span>
+                        </button>
+                        <button data-theme="dark" class="theme-btn">
+                            <div class="theme-preview dark-theme"></div>
+                            <span>夜间</span>
+                        </button>
+                        <button data-theme="eye" class="theme-btn">
+                            <div class="theme-preview eye-theme"></div>
+                            <span>护眼</span>
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- 行间距 -->
+                <div class="setting-group">
+                    <label>行间距</label>
+                    <div class="line-height-controls">
+                        <button data-spacing="tight" class="spacing-btn">紧凑</button>
+                        <button data-spacing="normal" class="spacing-btn active">标准</button>
+                        <button data-spacing="loose" class="spacing-btn">宽松</button>
+                    </div>
+                </div>
+            </div>
         </div>
+
+        <!-- 遮罩层 -->
+        <div id="overlay" class="overlay"></div>
     </div>
 
     <script src="js/script.js"></script>
